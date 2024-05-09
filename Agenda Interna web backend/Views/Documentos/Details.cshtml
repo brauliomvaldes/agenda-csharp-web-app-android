@@ -1,0 +1,66 @@
+﻿@model AgendaInterna.Models.Documentos
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Documentos</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Url)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Url)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaSubida)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaSubida)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Interno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Interno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Eliminado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Eliminado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Proyectos.NombreProyecto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Proyectos.NombreProyecto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoDocumentos.NombreTipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoDocumentos.NombreTipo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdDocumento }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

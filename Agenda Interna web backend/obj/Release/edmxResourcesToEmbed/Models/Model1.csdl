@@ -1,0 +1,340 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AGENDADKSFModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="AGENDADKSFEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Ciudades" EntityType="AGENDADKSFModel.Ciudades" />
+    <EntitySet Name="Comunas" EntityType="AGENDADKSFModel.Comunas" />
+    <EntitySet Name="Documentos" EntityType="AGENDADKSFModel.Documentos" />
+    <EntitySet Name="Empresas" EntityType="AGENDADKSFModel.Empresas" />
+    <EntitySet Name="Extensiones" EntityType="AGENDADKSFModel.Extensiones" />
+    <EntitySet Name="Pagos" EntityType="AGENDADKSFModel.Pagos" />
+    <EntitySet Name="Paises" EntityType="AGENDADKSFModel.Paises" />
+    <EntitySet Name="Proyectos" EntityType="AGENDADKSFModel.Proyectos" />
+    <EntitySet Name="sysdiagrams" EntityType="AGENDADKSFModel.sysdiagrams" />
+    <EntitySet Name="TipoDocumentos" EntityType="AGENDADKSFModel.TipoDocumentos" />
+    <EntitySet Name="TipoUsuarios" EntityType="AGENDADKSFModel.TipoUsuarios" />
+    <EntitySet Name="Usuarios" EntityType="AGENDADKSFModel.Usuarios" />
+    <AssociationSet Name="FK_Ciudad_Pais" Association="AGENDADKSFModel.FK_Ciudad_Pais">
+      <End Role="Paises" EntitySet="Paises" />
+      <End Role="Ciudades" EntitySet="Ciudades" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Comunas_Ciudad" Association="AGENDADKSFModel.FK_Comunas_Ciudad">
+      <End Role="Ciudades" EntitySet="Ciudades" />
+      <End Role="Comunas" EntitySet="Comunas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Empresas_Comunas" Association="AGENDADKSFModel.FK_Empresas_Comunas">
+      <End Role="Comunas" EntitySet="Comunas" />
+      <End Role="Empresas" EntitySet="Empresas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Documentos_Extensiones" Association="AGENDADKSFModel.FK_Documentos_Extensiones">
+      <End Role="Extensiones" EntitySet="Extensiones" />
+      <End Role="Documentos" EntitySet="Documentos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Documentos_Proyectos" Association="AGENDADKSFModel.FK_Documentos_Proyectos">
+      <End Role="Proyectos" EntitySet="Proyectos" />
+      <End Role="Documentos" EntitySet="Documentos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Documentos_TipoDocumentos" Association="AGENDADKSFModel.FK_Documentos_TipoDocumentos">
+      <End Role="TipoDocumentos" EntitySet="TipoDocumentos" />
+      <End Role="Documentos" EntitySet="Documentos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pagos_Documentos" Association="AGENDADKSFModel.FK_Pagos_Documentos">
+      <End Role="Documentos" EntitySet="Documentos" />
+      <End Role="Pagos" EntitySet="Pagos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Proyectos_Empresas" Association="AGENDADKSFModel.FK_Proyectos_Empresas">
+      <End Role="Empresas" EntitySet="Empresas" />
+      <End Role="Proyectos" EntitySet="Proyectos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Usuarios_Empresas" Association="AGENDADKSFModel.FK_Usuarios_Empresas">
+      <End Role="Empresas" EntitySet="Empresas" />
+      <End Role="Usuarios" EntitySet="Usuarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Proyectos_Usuarios" Association="AGENDADKSFModel.FK_Proyectos_Usuarios">
+      <End Role="Usuarios" EntitySet="Usuarios" />
+      <End Role="Proyectos" EntitySet="Proyectos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Usuarios_TipoDeUsuarios" Association="AGENDADKSFModel.FK_Usuarios_TipoDeUsuarios">
+      <End Role="TipoUsuarios" EntitySet="TipoUsuarios" />
+      <End Role="Usuarios" EntitySet="Usuarios" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Ciudades">
+    <Key>
+      <PropertyRef Name="IdCiudad" />
+    </Key>
+    <Property Name="IdCiudad" Type="Int32" Nullable="false" />
+    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ÍdPais" Type="Int32" Nullable="false" />
+    <Property Name="Eliminado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Paises" Relationship="AGENDADKSFModel.FK_Ciudad_Pais" FromRole="Ciudades" ToRole="Paises" />
+    <NavigationProperty Name="Comunas" Relationship="AGENDADKSFModel.FK_Comunas_Ciudad" FromRole="Ciudades" ToRole="Comunas" />
+  </EntityType>
+  <EntityType Name="Comunas">
+    <Key>
+      <PropertyRef Name="IdComuna" />
+    </Key>
+    <Property Name="IdComuna" Type="Int32" Nullable="false" />
+    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IdCiudad" Type="Int32" Nullable="false" />
+    <Property Name="Eliminado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Ciudades" Relationship="AGENDADKSFModel.FK_Comunas_Ciudad" FromRole="Comunas" ToRole="Ciudades" />
+    <NavigationProperty Name="Empresas" Relationship="AGENDADKSFModel.FK_Empresas_Comunas" FromRole="Comunas" ToRole="Empresas" />
+  </EntityType>
+  <EntityType Name="Documentos">
+    <Key>
+      <PropertyRef Name="IdDocumento" />
+    </Key>
+    <Property Name="IdDocumento" Type="Int32" Nullable="false" />
+    <Property Name="IdProyecto" Type="Int32" Nullable="false" />
+    <Property Name="IdTipoDocumento" Type="Int32" Nullable="false" />
+    <Property Name="IdExtension" Type="Int32" Nullable="false" />
+    <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Url" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FechaSubida" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Interno" Type="Boolean" Nullable="false" />
+    <Property Name="Eliminado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Extensiones" Relationship="AGENDADKSFModel.FK_Documentos_Extensiones" FromRole="Documentos" ToRole="Extensiones" />
+    <NavigationProperty Name="Proyectos" Relationship="AGENDADKSFModel.FK_Documentos_Proyectos" FromRole="Documentos" ToRole="Proyectos" />
+    <NavigationProperty Name="TipoDocumentos" Relationship="AGENDADKSFModel.FK_Documentos_TipoDocumentos" FromRole="Documentos" ToRole="TipoDocumentos" />
+    <NavigationProperty Name="Pagos" Relationship="AGENDADKSFModel.FK_Pagos_Documentos" FromRole="Documentos" ToRole="Pagos" />
+  </EntityType>
+  <EntityType Name="Empresas">
+    <Key>
+      <PropertyRef Name="IdEmpresa" />
+    </Key>
+    <Property Name="IdEmpresa" Type="Int32" Nullable="false" />
+    <Property Name="RutEmpresa" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Direccion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IdComuna" Type="Int32" Nullable="false" />
+    <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+    <Property Name="Eliminado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Comunas" Relationship="AGENDADKSFModel.FK_Empresas_Comunas" FromRole="Empresas" ToRole="Comunas" />
+    <NavigationProperty Name="Proyectos" Relationship="AGENDADKSFModel.FK_Proyectos_Empresas" FromRole="Empresas" ToRole="Proyectos" />
+    <NavigationProperty Name="Usuarios" Relationship="AGENDADKSFModel.FK_Usuarios_Empresas" FromRole="Empresas" ToRole="Usuarios" />
+  </EntityType>
+  <EntityType Name="Extensiones">
+    <Key>
+      <PropertyRef Name="IdExtension" />
+    </Key>
+    <Property Name="IdExtension" Type="Int32" Nullable="false" />
+    <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Eliminado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Documentos" Relationship="AGENDADKSFModel.FK_Documentos_Extensiones" FromRole="Extensiones" ToRole="Documentos" />
+  </EntityType>
+  <EntityType Name="Pagos">
+    <Key>
+      <PropertyRef Name="IdPago" />
+    </Key>
+    <Property Name="IdPago" Type="Int32" Nullable="false" />
+    <Property Name="IdDocumento" Type="Int32" Nullable="false" />
+    <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="MontoPago" Type="Decimal" Nullable="false" Precision="8" Scale="2" />
+    <Property Name="Eliminado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Documentos" Relationship="AGENDADKSFModel.FK_Pagos_Documentos" FromRole="Pagos" ToRole="Documentos" />
+  </EntityType>
+  <EntityType Name="Paises">
+    <Key>
+      <PropertyRef Name="IdPais" />
+    </Key>
+    <Property Name="IdPais" Type="Int32" Nullable="false" />
+    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Eliminado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Ciudades" Relationship="AGENDADKSFModel.FK_Ciudad_Pais" FromRole="Paises" ToRole="Ciudades" />
+  </EntityType>
+  <EntityType Name="Proyectos">
+    <Key>
+      <PropertyRef Name="IdProyecto" />
+    </Key>
+    <Property Name="IdProyecto" Type="Int32" Nullable="false" />
+    <Property Name="IdEmpresa" Type="Int32" Nullable="false" />
+    <Property Name="IdUsuarioCargo" Type="Int32" Nullable="false" />
+    <Property Name="NombreProyecto" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Aprobado" Type="Boolean" Nullable="false" />
+    <Property Name="MontoProyecto" Type="Decimal" Nullable="false" Precision="8" Scale="2" />
+    <Property Name="FechaPago" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Pagado" Type="Boolean" />
+    <Property Name="Eliminado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Documentos" Relationship="AGENDADKSFModel.FK_Documentos_Proyectos" FromRole="Proyectos" ToRole="Documentos" />
+    <NavigationProperty Name="Empresas" Relationship="AGENDADKSFModel.FK_Proyectos_Empresas" FromRole="Proyectos" ToRole="Empresas" />
+    <NavigationProperty Name="Usuarios" Relationship="AGENDADKSFModel.FK_Proyectos_Usuarios" FromRole="Proyectos" ToRole="Usuarios" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TipoDocumentos">
+    <Key>
+      <PropertyRef Name="IdTipoDocumento" />
+    </Key>
+    <Property Name="IdTipoDocumento" Type="Int32" Nullable="false" />
+    <Property Name="NombreTipo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Eliminado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Documentos" Relationship="AGENDADKSFModel.FK_Documentos_TipoDocumentos" FromRole="TipoDocumentos" ToRole="Documentos" />
+  </EntityType>
+  <EntityType Name="TipoUsuarios">
+    <Key>
+      <PropertyRef Name="idTipoUsuario" />
+    </Key>
+    <Property Name="idTipoUsuario" Type="Int32" Nullable="false" />
+    <Property Name="NombreTipo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Eliminar" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Usuarios" Relationship="AGENDADKSFModel.FK_Usuarios_TipoDeUsuarios" FromRole="TipoUsuarios" ToRole="Usuarios" />
+  </EntityType>
+  <EntityType Name="Usuarios">
+    <Key>
+      <PropertyRef Name="IdUsuario" />
+    </Key>
+    <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+    <Property Name="IdEmpresa" Type="Int32" Nullable="false" />
+    <Property Name="Correo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Apellido" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="IdTipoUsuario" Type="Int32" Nullable="false" />
+    <Property Name="Eliminado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Empresas" Relationship="AGENDADKSFModel.FK_Usuarios_Empresas" FromRole="Usuarios" ToRole="Empresas" />
+    <NavigationProperty Name="Proyectos" Relationship="AGENDADKSFModel.FK_Proyectos_Usuarios" FromRole="Usuarios" ToRole="Proyectos" />
+    <NavigationProperty Name="TipoUsuarios" Relationship="AGENDADKSFModel.FK_Usuarios_TipoDeUsuarios" FromRole="Usuarios" ToRole="TipoUsuarios" />
+  </EntityType>
+  <Association Name="FK_Ciudad_Pais">
+    <End Type="AGENDADKSFModel.Paises" Role="Paises" Multiplicity="1" />
+    <End Type="AGENDADKSFModel.Ciudades" Role="Ciudades" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Paises">
+        <PropertyRef Name="IdPais" />
+      </Principal>
+      <Dependent Role="Ciudades">
+        <PropertyRef Name="ÍdPais" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Comunas_Ciudad">
+    <End Type="AGENDADKSFModel.Ciudades" Role="Ciudades" Multiplicity="1" />
+    <End Type="AGENDADKSFModel.Comunas" Role="Comunas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ciudades">
+        <PropertyRef Name="IdCiudad" />
+      </Principal>
+      <Dependent Role="Comunas">
+        <PropertyRef Name="IdCiudad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Empresas_Comunas">
+    <End Type="AGENDADKSFModel.Comunas" Role="Comunas" Multiplicity="1" />
+    <End Type="AGENDADKSFModel.Empresas" Role="Empresas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Comunas">
+        <PropertyRef Name="IdComuna" />
+      </Principal>
+      <Dependent Role="Empresas">
+        <PropertyRef Name="IdComuna" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Documentos_Extensiones">
+    <End Type="AGENDADKSFModel.Extensiones" Role="Extensiones" Multiplicity="1" />
+    <End Type="AGENDADKSFModel.Documentos" Role="Documentos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Extensiones">
+        <PropertyRef Name="IdExtension" />
+      </Principal>
+      <Dependent Role="Documentos">
+        <PropertyRef Name="IdExtension" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Documentos_Proyectos">
+    <End Type="AGENDADKSFModel.Proyectos" Role="Proyectos" Multiplicity="1" />
+    <End Type="AGENDADKSFModel.Documentos" Role="Documentos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Proyectos">
+        <PropertyRef Name="IdProyecto" />
+      </Principal>
+      <Dependent Role="Documentos">
+        <PropertyRef Name="IdProyecto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Documentos_TipoDocumentos">
+    <End Type="AGENDADKSFModel.TipoDocumentos" Role="TipoDocumentos" Multiplicity="1" />
+    <End Type="AGENDADKSFModel.Documentos" Role="Documentos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoDocumentos">
+        <PropertyRef Name="IdTipoDocumento" />
+      </Principal>
+      <Dependent Role="Documentos">
+        <PropertyRef Name="IdTipoDocumento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pagos_Documentos">
+    <End Type="AGENDADKSFModel.Documentos" Role="Documentos" Multiplicity="1" />
+    <End Type="AGENDADKSFModel.Pagos" Role="Pagos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Documentos">
+        <PropertyRef Name="IdDocumento" />
+      </Principal>
+      <Dependent Role="Pagos">
+        <PropertyRef Name="IdDocumento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Proyectos_Empresas">
+    <End Type="AGENDADKSFModel.Empresas" Role="Empresas" Multiplicity="1" />
+    <End Type="AGENDADKSFModel.Proyectos" Role="Proyectos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empresas">
+        <PropertyRef Name="IdEmpresa" />
+      </Principal>
+      <Dependent Role="Proyectos">
+        <PropertyRef Name="IdEmpresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Usuarios_Empresas">
+    <End Type="AGENDADKSFModel.Empresas" Role="Empresas" Multiplicity="1" />
+    <End Type="AGENDADKSFModel.Usuarios" Role="Usuarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empresas">
+        <PropertyRef Name="IdEmpresa" />
+      </Principal>
+      <Dependent Role="Usuarios">
+        <PropertyRef Name="IdEmpresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Proyectos_Usuarios">
+    <End Type="AGENDADKSFModel.Usuarios" Role="Usuarios" Multiplicity="1" />
+    <End Type="AGENDADKSFModel.Proyectos" Role="Proyectos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuarios">
+        <PropertyRef Name="IdUsuario" />
+      </Principal>
+      <Dependent Role="Proyectos">
+        <PropertyRef Name="IdUsuarioCargo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Usuarios_TipoDeUsuarios">
+    <End Type="AGENDADKSFModel.TipoUsuarios" Role="TipoUsuarios" Multiplicity="1" />
+    <End Type="AGENDADKSFModel.Usuarios" Role="Usuarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuarios">
+        <PropertyRef Name="idTipoUsuario" />
+      </Principal>
+      <Dependent Role="Usuarios">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

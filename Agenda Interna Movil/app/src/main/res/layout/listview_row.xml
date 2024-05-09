@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/linear_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/columna_1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:layout_marginLeft="5dp"
+            android:textSize="20dp"
+            android:textColor="#111111"
+            android:text="@string/columna_1" />
+
+        <TextView
+            android:id="@+id/columna_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:textSize="20dp"
+            android:textColor="#111111"
+            android:text="@string/columna_2" />
+
+        <TextView
+            android:id="@+id/columna_3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginRight="8dp"
+            android:textSize="20dp"
+            android:textColor="#2FAC66"
+            android:text="@string/columna_3" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

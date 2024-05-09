@@ -1,0 +1,285 @@
+﻿@model  AgendaInterna.Models.Cascada
+
+@{
+    ViewBag.Title = "Home";
+    ViewBag.nombreUsuario = Session["NombreUsuario"];
+    ViewBag.tipousuario = Session["TipoUsuario"];
+
+}
+
+
+
+<body>
+    <div>
+        <div class="font-italic text-center">
+            <hr>
+            <font class="saludo-usuario">Bienvenido Usuario: @ViewBag.nombreUsuario</font>
+        </div>
+    </div>
+
+    <br>
+    <div style="border:1px solid #ccc">
+        <div class="container">
+            <h1>Listador de Documentos</h1>
+            <hr>
+            <table class="d-inline-block form-control-sm ml-1 mr-2 w-75">
+                <tr>
+                    <td>
+                        <form action="~/home/ObtieneListaProyectos">
+                            <input type="submit" id ="btnCargar" value="Cargar Proyectos" />                            
+                        </form>
+                    </td>
+                    <td></td>
+                    <td>
+                        @if (ViewBag.listaEmpresas != null)
+                        {
+                            @Html.DropDownListFor(m => m.IdEmpresa, ViewBag.listaEmpresas as SelectList, "Filtrar por Empresa", new { @class = "form-control" })
+                        }
+                    </td>
+                    <td></td>
+                    <td>
+                        <form action="~/home/ObtieneListaProyectosAprobados">
+                            <input type="submit" value="Aprobados" />
+                        </form>
+                    </td>
+                    <td></td>
+                    <td>
+                        <form action="~/home/ObtieneListaProyectosPagados">
+                            <input type="submit" value="Pagados" />
+                        </form>                        
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="container">
+            @{
+                if (@ViewBag.proyectos != null)
+                {
+                    <table class="table table-striped">
+                        <tr>
+                            <th>
+                                Nombre Empresa
+                            </th>
+                            <th>
+                                Empresa
+                            </th>
+                            <th>
+                                Monto Proyecto
+                            </th>
+                            <th>
+                                Fecha Creación
+                            </th>
+                            <th>
+                                Aprobado
+                            </th>
+                            <th>
+                                Fecha Pago
+                            </th>
+                            <th>
+                                Pagado
+                            </th>
+                            <th>
+                                Documentos
+                            </th>
+                        </tr>
+
+                        @{
+                            foreach (var item in ViewBag.proyectos)
+                            {
+                                <tr>
+                                    <th>
+                                        @item.NombreProyecto
+                                    </th>
+                                    <th>
+                                        @{
+                                            foreach (var elem in ViewBag.Empresas)
+                                            {
+                                                if (elem.IdEmpresa == item.IdEmpresa)
+                                                {
+                                                    @elem.Nombre
+                                                }
+                                            }
+                                        }
+                                    </th>
+                                    <th>
+                                        @item.MontoProyecto
+                                    </th>
+                                    <th>
+                                        @item.FechaCreacion
+                                    </th>
+                                    <th>
+                                        @item.Aprobado
+                                    </th>
+                                    <th>
+                                        @item.FechaPago
+                                    </th>
+                                    <th>
+                                        @item.Pagado
+                                    </th>
+                                    <th>
+                                        <a href="#"><i class="fa fa-search"></i></a>
+                                    </th>
+                                </tr>
+                            }
+                        }
+                    </table>
+                }
+                else
+                {
+                    <br />
+                    <b>
+                        -----
+                        -----      SIN PROYECTOS QUE MOSTRAR
+                        -----
+                    </b>
+                }
+
+
+                <footer>
+                    <div class="row col-md-12">
+                        <ul class="col-md-6 mr-auto ml-auto pagination">
+                            <li class="page-item">
+                                <a class="page-link" href="~/home/ObtieneListaProyectos/?pagina=1"><<</a>
+                            </li>
+                            @{
+
+                                int count = 0;
+                                int pagina = 0;
+                                try
+                                {
+                                    pagina = ViewBag.pagina - 1;
+                                }
+                                catch (Exception e)
+                                {
+                                    pagina = 1;
+                                }
+
+                                int i = pagina;
+
+                                if (i < 1)
+                                {
+                                    i = 1;
+                                }
+
+                                for (; count < 3 && i <= ViewBag.total; i++)
+                                {
+                                    if (i == ViewBag.pagina)
+                                    {
+                                        <li class="page-item active">                                           
+                                            <a class="page-link active" href="~/home/ObtieneListaProyectos/?pagina=@i">@i</a>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li class="page-item">                                            
+                                            <a class="page-link" href="~/home/ObtieneListaProyectos/?pagina=@i">@i</a>
+                                        </li>
+                                    }
+                                    count++;
+                                }
+                            }
+
+                            <li>                               
+                                <a class="page-link" href="~/home/ObtieneListaProyectos/?pagina=@ViewBag.total">>></a>
+                            </li>
+                        </ul>
+                    </div>
+                </footer>
+            }
+        </div>
+    </div>
+</body>
+  
+
+<script>
+
+    $(function () {
+
+        
+        $("#btnCargar").click(function () {
+           
+            var dropDown = document.getElementById("IdEmpresa");
+            dropDown.selectedIndex = 0;
+
+            var url = "@Url.Action("ObtieneListaProyectos","Home")";
+
+            $.get(url).done().fail().always();
+
+        });
+     
+        $("#IdEmpresa").change(function () {
+            var emp = $(this).val();
+ 
+            var url = "@Url.Action("ObtieneListaProyectosPorEmpresa")"+"?empresa="+emp;
+            window.location.href = url;
+          
+
+         })
+
+
+
+        /*
+        $("#btnPagados").click(function () {
+            //$(this).prop("disabled", "disabled");
+
+            var url = "  arroba@Url.Action("ObtieneListaProyectosPagados","Home")";
+
+            $.get(url).done(function (data) {
+                $("#vistaprevia").empty();
+                $("#buscarproyecto").empty();
+                var dropDown = document.getElementById("IdEmpresa");
+                dropDown.selectedIndex = 0;
+                $("#vistaprevia").append(data);
+
+            }).fail().always(
+                function () {
+                    $("#btnPagados").prop("enabled", "enabled");
+                }
+            );
+        });
+
+
+        $("#btnAprobados").click(function () {
+            //$(this).prop("disabled", "disabled");
+
+            var url = "  arroba@Url.Action("ObtieneListaProyectosAprobados","Home")";
+
+            $.get(url).done(function (data) {
+                $("#vistaprevia").empty();
+                $("#buscarproyecto").empty();
+                var dropDown = document.getElementById("IdEmpresa");
+                dropDown.selectedIndex = 0;
+                $("#vistaprevia").append(data);
+
+            }).fail().always(
+                function () {
+                    $("#btnAprobados").prop("enabled", "enabled");
+                }
+            );
+        });
+
+    */
+
+    });
+
+
+</script>
+
+<script>
+
+
+    $(document).ready(function () {
+        // Simular click
+ 
+          //  $("#btnCargar").trigger("click");
+ 
+    });
+
+</script>
+
+
+ 
+
+
+
+

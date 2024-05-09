@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="00f8fa4da2cd4114a6429b2b92aeff8e" Name="Diagram1" ZoomLevel="85">
+        <EntityTypeShape EntityType="AGENDADKSFModel.Ciudades" Width="1.5" PointX="3" PointY="4.875" />
+        <EntityTypeShape EntityType="AGENDADKSFModel.Comunas" Width="1.5" PointX="5.25" PointY="4.875" />
+        <EntityTypeShape EntityType="AGENDADKSFModel.Documentos" Width="1.5" PointX="15" PointY="4.125" />
+        <EntityTypeShape EntityType="AGENDADKSFModel.Empresas" Width="1.5" PointX="7.5" PointY="4.5" />
+        <EntityTypeShape EntityType="AGENDADKSFModel.Extensiones" Width="1.5" PointX="12.75" PointY="0.75" />
+        <EntityTypeShape EntityType="AGENDADKSFModel.Pagos" Width="1.5" PointX="17.25" PointY="4.875" />
+        <EntityTypeShape EntityType="AGENDADKSFModel.Paises" Width="1.5" PointX="0.75" PointY="5" />
+        <EntityTypeShape EntityType="AGENDADKSFModel.Proyectos" Width="1.5" PointX="9.75" PointY="4.125" />
+        <EntityTypeShape EntityType="AGENDADKSFModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="1.625" />
+        <EntityTypeShape EntityType="AGENDADKSFModel.TipoDocumentos" Width="1.5" PointX="12.75" PointY="9.25" />
+        <EntityTypeShape EntityType="AGENDADKSFModel.TipoUsuarios" Width="1.5" PointX="10.5" PointY="1" />
+        <EntityTypeShape EntityType="AGENDADKSFModel.Usuarios" Width="1.5" PointX="12.75" PointY="4.25" />
+        <AssociationConnector Association="AGENDADKSFModel.FK_Ciudad_Pais" />
+        <AssociationConnector Association="AGENDADKSFModel.FK_Comunas_Ciudad" />
+        <AssociationConnector Association="AGENDADKSFModel.FK_Empresas_Comunas" />
+        <AssociationConnector Association="AGENDADKSFModel.FK_Documentos_Extensiones" />
+        <AssociationConnector Association="AGENDADKSFModel.FK_Documentos_Proyectos" />
+        <AssociationConnector Association="AGENDADKSFModel.FK_Documentos_TipoDocumentos" />
+        <AssociationConnector Association="AGENDADKSFModel.FK_Pagos_Documentos" />
+        <AssociationConnector Association="AGENDADKSFModel.FK_Proyectos_Empresas" />
+        <AssociationConnector Association="AGENDADKSFModel.FK_Usuarios_Empresas" />
+        <AssociationConnector Association="AGENDADKSFModel.FK_Proyectos_Usuarios" />
+        <AssociationConnector Association="AGENDADKSFModel.FK_Usuarios_TipoDeUsuarios" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

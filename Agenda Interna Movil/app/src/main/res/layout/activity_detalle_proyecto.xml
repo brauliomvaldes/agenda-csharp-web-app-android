@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:onClick="buscarDocumentos"
+    tools:context=".DetalleProyecto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="104dp"
+        tools:layout_editor_absoluteY="98dp">
+
+        <TextView
+            android:id="@+id/textViewTitulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="DETALLE DEL CONTRATO"
+            android:textAlignment="center"
+            android:textColor="#111111"
+            android:background="#2FAC66"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/textViewC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:background="#2FAC66"
+            android:textColor="#111111"
+            android:text="Nombre del Contarto" />
+
+        <TextView
+            android:id="@+id/textViewDatoC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:textColor="#111111"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/textViewFC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:background="#2FAC66"
+            android:textColor="#111111"
+            android:text="Fecha del Contrato" />
+
+        <TextView
+            android:id="@+id/textViewDatoFC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:textColor="#111111"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/textViewA"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:background="#2FAC66"
+            android:textColor="#111111"
+            android:text="Estado del Conatrto" />
+
+        <TextView
+            android:id="@+id/textViewDatoA"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:textColor="#111111"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/textViewM"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:background="#2FAC66"
+            android:textColor="#111111"
+            android:text="Monto del Contrato (U.F.)" />
+
+        <TextView
+            android:id="@+id/textViewDatoM"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:textColor="#111111"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/textViewFP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:background="#2FAC66"
+            android:textColor="#111111"
+            android:text="Fecha de Pago" />
+
+        <TextView
+            android:id="@+id/textViewDatoFP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:textColor="#111111"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/textViewP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:background="#2FAC66"
+            android:textColor="#111111"
+            android:text="Estado de Pago" />
+
+        <TextView
+            android:id="@+id/textViewDatoP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text=""
+            android:textColor="#111111"
+            android:textSize="25dp" />
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewDatoP"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:onClick="buscarDocumentos"
+            android:textColor="#FFFFFF"
+            android:layout_margin="5dp"
+            android:text="Consultar Documentos"
+            android:textSize="20dp"
+            android:background="@drawable/boton_redondo"/>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

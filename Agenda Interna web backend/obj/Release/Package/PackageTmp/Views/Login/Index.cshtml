@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+
+
+ 
+<link rel="stylesheet" type="text/css" href="~/Content/stylelogin.css" />
+<header>
+    <div class="col-12 m-auto text-center d-inline-block">
+        <span class="btn-group-vertical"><img class="img-logo-principal" src="~/Assets/img/logosolo.png" /></span>
+    </div>
+</header> 
+
+
+<form class="form-signin justify-content-xl-center" action="~/Login/VerificaIngreso" method="post">
+    <div class="simple-login-container" align="center">
+        <h2>Acceso</h2>
+        <div class="row">
+            <div class="col-md-12 form-group">
+                <input type="text" class="form-control" placeholder="Correo de Usuario" name="correo" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 form-group">
+                <input type="password" placeholder="Ingrese su Password" class="form-control" name="pass" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 form-group">
+                <input type="submit" class="btn btn-block btn-agregar">
+            </div>
+        </div>
+        <hr>
+        <a class="btn btn-outline-primary" href="/Registro">¿Usted no tiene cuenta?</a>
+        <hr>
+        <a class="btn btn-outline-secondary" href="/Recupera">¿Olvidó su contraseña?</a>
+
+        <div class="alert alert-light" role="alert">
+            <h2 class="alert-danger">@ViewBag.mensaje</h2>
+        </div>
+
+    </div>
+</form>
